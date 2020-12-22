@@ -6,6 +6,15 @@ public class Payment implements Serializable {
     private int idPayment;
     private String namePayment;
     private String type;
+    private  String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public Payment(int idPayment, String namePayment, String type) {
         this.idPayment = idPayment;

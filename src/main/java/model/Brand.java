@@ -6,10 +6,22 @@ public class Brand implements Serializable {
     private int idBrand;
     private String nameBrand;
     private String codeBrand;
+    private String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desct) {
+        this.desc = desct;
+    }
 
     public Brand(String nameBrand, String codeBrand) {
         this.nameBrand = nameBrand;
         this.codeBrand = codeBrand;
+    }
+
+    public Brand() {
     }
 
     public int getIdBrand() {

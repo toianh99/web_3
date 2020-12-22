@@ -17,6 +17,9 @@ public class Customer extends User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public Customer() {
+    }
+
     public int getIdCustomer() {
         return idCustomer;
     }

@@ -13,6 +13,9 @@ public class Staff  extends User implements Serializable {
         this.posittion = posittion;
     }
 
+    public Staff() {
+    }
+
     public int getIdStaff() {
         return idStaff;
     }
