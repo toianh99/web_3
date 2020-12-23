@@ -17,8 +17,8 @@ public class CustomerDAOImpl extends BaseDAOImpl<Customer> implements ICustomer 
 
     @Override
     public void updateCustomer(Customer customer) {
-        StringBuilder sql = new StringBuilder("UPDATE customer SET `Email` =?,`PhoneNumber`=?,`UserID`=?,`FirstName`=?,`LastName`=? WHERE `ID`=?");
-        update(sql.toString(),customer.getEmail(),customer.getPhoneNumber(),customer.getIdUser(),customer.getFirstName(),customer.getLastname(),customer.getIdCustomer());
+        StringBuilder sql = new StringBuilder("UPDATE customer SET `Email` =?,`PhoneNumber`=?,`FirstName`=?,`LastName`=? WHERE `UserID`=?");
+        update(sql.toString(),customer.getEmail(),customer.getPhoneNumber(),customer.getFirstName(),customer.getLastname(),customer.getIdCustomer());
     }
 
     @Override

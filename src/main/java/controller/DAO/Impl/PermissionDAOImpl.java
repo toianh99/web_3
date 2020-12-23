@@ -40,12 +40,15 @@ public class PermissionDAOImpl extends BaseDAOImpl<Permission> implements IPermi
 
     @Override
     public List<Permission> getAll(int pagenum, int pagesize) {
-        return null;
+        String sql = "SELECT * FROM `permission` LIMIT ?, ?";
+        List<Permission> permissions = query(sql, new PermissionMapper(),pagenum,pagesize);
+        return permissions.isEmpty() ? null : permissions;
     }
 
     @Override
     public Permission findById(int id) {
-        return null;
+        String sql ="SELECT * FROM `permission` WHERE `ID` = ?";
+        return query(sql,new PermissionMapper(),id).get(0);
     }
 
 //    @Override

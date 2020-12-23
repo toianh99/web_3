@@ -7,6 +7,12 @@ public class Sale implements Serializable {
     private String nameSale;
     private int percent;
 
+    public Sale(int idSale, String nameSale, int percent) {
+        this.idSale = idSale;
+        this.nameSale = nameSale;
+        this.percent = percent;
+    }
+
     public Sale(String nameSale, int percent) {
         this.nameSale = nameSale;
         this.percent = percent;

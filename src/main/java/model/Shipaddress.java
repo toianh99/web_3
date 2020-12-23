@@ -9,6 +9,14 @@ public class Shipaddress implements Serializable {
     private String dictrict;
     private String detail;
 
+    public Shipaddress(int idAddress, String province, String commune, String dictrict, String detail) {
+        this.idAddress = idAddress;
+        this.province = province;
+        this.commune = commune;
+        this.dictrict = dictrict;
+        this.detail = detail;
+    }
+
     public Shipaddress(String province, String commune, String dictrict, String detail) {
         this.province = province;
         this.commune = commune;

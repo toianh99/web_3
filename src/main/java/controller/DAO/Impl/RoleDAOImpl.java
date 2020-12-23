@@ -11,20 +11,20 @@ import java.util.List;
 public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
     @Override
     public int saveRole(Role role) {
-        StringBuilder sql = new StringBuilder("INSERT INTO roles(Name , `Desc`, Code  )");
+        StringBuilder sql = new StringBuilder("INSERT INTO role(`Name` , `Desc`, `Code`  )");
         sql.append(" VALUES( ? , ? , ? )");
         return insert(sql.toString(),role.getNameRole(),role.getCodeRole(),role.getDesc());
     }
 
     @Override
     public void updateRole(Role role) {
-        StringBuilder sql = new StringBuilder("UPDATE roles SET nameRole = ?, code = ?, desc =? WHERE idRole = ?");
+        StringBuilder sql = new StringBuilder("UPDATE role SET `Name` = ?, `Code` = ?, `Desc` =? WHERE `ID`` = ?");
         update(sql.toString(), role.getNameRole(),role.getCodeRole(),role.getDesc(),role.getIdRole());
     }
 
     @Override
     public void deleteRole(int id) {
-        String sql = "DELETE FROM roles WHERE idRole = ?";
+        String sql = "DELETE FROM role WHERE `ID`` = ?";
         update(sql, id);
     }
 
@@ -42,14 +42,14 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
 
     @Override
     public Role findById(int idRole) {
-        String sql = "SELECT * FROM roles WHERE idRole = ?";
+        String sql = "SELECT * FROM role WHERE `ID`` = ?";
         List<Role> roles = query(sql, new RoleMapper(), idRole);
         return roles.isEmpty() ? null : roles.get(0);
     }
 
     @Override
     public List<Role> getAll(int pagenum, int pagesize) {
-        String sql = "SELECT * FROM roles LIMIT ?,?";
+        String sql = "SELECT * FROM role LIMIT ?,?";
         return query(sql, new RoleMapper(),pagenum,pagesize);
     }
 

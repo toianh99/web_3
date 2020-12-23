@@ -2,7 +2,10 @@ package controller.DAO.Impl;
 
 
 import controller.DAO.IPayment;
+import controller.Mapper.Impl.PaymentMapper;
 import model.Payment;
+
+import java.util.List;
 
 public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
     @Override
@@ -23,5 +26,11 @@ public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
     public void deletePayment(int id) {
         String sql ="DELETE * FROM payment WHERE `ID` = ?";
         update(sql,id);
+    }
+
+    @Override
+    public List<Payment> getPayment() {
+        String sql ="SELECT * FROM `payment`";
+        return query(sql,new PaymentMapper());
     }
 }

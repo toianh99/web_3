@@ -3,16 +3,49 @@ package controller.DAO.Impl;
 
 
 import controller.DAO.IUser;
+import controller.Mapper.Impl.UserMapper;
 import model.User;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+
 
 public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
+    @Override
+    public User Login(User user) {
+        String sql ="SELECT * FROM `user` WHERE `Username` = ? AND `Password` =?";
+        return query(sql, new UserMapper(),user.getUsername(),user.getPassword()).get(0);
+    }
 
     @Override
+    public User findOne(int id) {
+        String sql ="SELECT * FROM `user` WHERE `ID`=?";
+        return query(sql,new UserMapper(),id).get(0);
+    }
+
+    @Override
+    public int saveUser(User user) {
+        String sql = "INSERT INTO `user`(`Username` =? ,`Password`= ? ,`Roles` =?) VALUES(?,?,?)";
+        return insert(sql,user.getUsername(),user.getPassword(),user.getRoles());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        String sql ="UPDATE `user` SET `Password` =? WHERE `ID`=?";
+        update(sql,user.getPassword(),user.getIdUser());
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        String sql = "DELETE * FROM `user` WHERE `ID`= ? ";
+        update(sql, id);
+    }
+
+    @Override
+    public int getCountUser() {
+        String sql ="SELECT COUNT(*) FROM `user`";
+        return count(sql);
+    }
+
+
 //    public User findByUsernamePassword(String usernname, String password) {
 //        StringBuilder sql = new StringBuilder("select ct.*, r.*,ac.*,p.* from user_roles as ur");
 //        sql.append(" inner join users as u on ur.UseridUser = u.idUser");
@@ -56,36 +89,6 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
 //        System.out.println(sql.toString());
 //        return users.isEmpty() ? null : users;
 //    }
-
-
-    public User Login(User user) {
-        return null;
-    }
-
-    @Override
-    public User findOne(int id) {
-        return null;
-    }
-
-    @Override
-    public Long save(User user) {
-        return null;
-    }
-
-    @Override
-    public void update(User user) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public int getCountUser() {
-        return 0;
-    }
 
 //    @Override
 //    public User findOne(int id) {
