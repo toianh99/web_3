@@ -15,11 +15,13 @@ public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
 
     @Override
     public void updatePayment(Payment payment) {
-
+        String sql = "UPDATE `payment` SET `NamePayment` = ? , `Type` = ? , `Desc` = ? WHERE `ID` = ?";
+        update(sql,payment.getNamePayment(),payment.getType(),payment.getDesc(),payment.getIdPayment());
     }
 
     @Override
     public void deletePayment(int id) {
-
+        String sql ="DELETE * FROM payment WHERE `ID` = ?";
+        update(sql,id);
     }
 }

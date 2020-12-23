@@ -2,6 +2,7 @@ package controller.DAO.Impl;
 
 
 import controller.DAO.IPermission;
+import controller.Mapper.Impl.PermissionMapper;
 import model.Permission;
 
 import java.util.List;
@@ -9,18 +10,22 @@ import java.util.List;
 
 public class PermissionDAOImpl extends BaseDAOImpl<Permission> implements IPermission {
     @Override
-    public Long savePermission(Permission permission) {
-        return null;
+    public int savePermission(Permission permission) {
+        StringBuilder sql = new StringBuilder("INSERT INTO `permission` ( `Name`,`Code`,) ");
+        sql.append(" VALUES ( ? , ?  ");
+        return insert(sql.toString(),permission.getNamePermission(),permission.getCodePermisison());
     }
 
     @Override
     public void updatePermission(Permission permission) {
-
+        String sql = "UPDATE permission SET `Name` = ? , `Code` = ? WHERE `ID` = ?";
+        update(sql,permission.getNamePermission(),permission.getCodePermisison(),permission.getIdPermission());
     }
 
     @Override
     public void deletePermission(int id) {
-
+        String sql = "DELETE * FROM `permission` WHERE `ID` = ?";
+        update(sql,id);
     }
 
     @Override

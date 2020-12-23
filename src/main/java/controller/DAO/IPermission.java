@@ -7,7 +7,7 @@ import model.Permission;
 import java.util.List;
 
 public interface IPermission extends IBaseDAO<Permission> {
-    Long savePermission(Permission permission);
+    int savePermission(Permission permission);
     void updatePermission(Permission permission);
     void deletePermission(int id);
     List<Permission> findByIdRole(int idRole);
