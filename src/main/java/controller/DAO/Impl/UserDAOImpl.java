@@ -23,8 +23,8 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
 
     @Override
     public int saveUser(User user) {
-        String sql = "INSERT INTO `user`(`Username` =? ,`Password`= ? ,`Roles` =?) VALUES(?,?,?)";
-        return insert(sql,user.getUsername(),user.getPassword(),user.getRoles());
+        String sql = "INSERT INTO `user`(`Username` ,`Password`,`Roles`) VALUES(?,?,?)";
+        return insert(sql,user.getUsername(),user.getPassword(),user.getRoles().getIdRole());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
 
     @Override
     public void deleteUser(int id) {
-        String sql = "DELETE * FROM `user` WHERE `ID`= ? ";
+        String sql = "DELETE FROM `user` WHERE `ID`= ? ";
         update(sql, id);
     }
 

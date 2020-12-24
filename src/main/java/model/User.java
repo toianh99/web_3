@@ -7,7 +7,15 @@ public class User implements Serializable {
     private int idUser;
     private String username;
     private String password;
-    private ArrayList<Role> roles;
+    private Role roles;
+
+    public void setRoles(Role roles) {
+        this.roles = roles;
+    }
+
+    public Role getRoles() {
+        return roles;
+    }
 
     public User() {
     }
@@ -35,11 +43,5 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public ArrayList<Role> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(ArrayList<Role> roles) {
-        this.roles = roles;
-    }
 }

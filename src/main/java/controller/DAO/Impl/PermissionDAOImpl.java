@@ -24,7 +24,9 @@ public class PermissionDAOImpl extends BaseDAOImpl<Permission> implements IPermi
 
     @Override
     public void deletePermission(int id) {
-        String sql = "DELETE * FROM `permission` WHERE `ID` = ?";
+        String sql = "DELETE * FROM `permission` as p" +
+                "INNER JOIN `role_permission` as rp ON rp.PermissionID=p.ID" +
+                " WHERE `ID` = ?";
         update(sql,id);
     }
 

@@ -4,6 +4,7 @@ package controller.DAO.Impl;
 
 import controller.DAO.IRole;
 import controller.Mapper.Impl.RoleMapper;
+import model.Permission;
 import model.Role;
 
 import java.util.List;
@@ -17,6 +18,13 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
     }
 
     @Override
+    public int saveRole_Permission(int idRole, int idPermission) {
+        StringBuilder sql = new StringBuilder("INSERT INTO `role_permission` (`RoleID`,`PermissionID`)");
+        sql.append("VALUES(?,?)");
+        return     insert(sql.toString(),idRole,idPermission);
+    }
+
+    @Override
     public void updateRole(Role role) {
         StringBuilder sql = new StringBuilder("UPDATE role SET `Name` = ?, `Code` = ?, `Desc` =? WHERE `ID`` = ?");
         update(sql.toString(), role.getNameRole(),role.getCodeRole(),role.getDesc(),role.getIdRole());
@@ -24,7 +32,9 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
 
     @Override
     public void deleteRole(int id) {
-        String sql = "DELETE FROM role WHERE `ID`` = ?";
+        String sql = "DELETE FROM role as r" +
+                "INNER JOIN `role_permission` as rp ON rp.RoleID=r.ID" +
+                " WHERE `ID`` = ?";
         update(sql, id);
     }
 

@@ -10,20 +10,20 @@ import java.util.List;
 public class CustomerDAOImpl extends BaseDAOImpl<Customer> implements ICustomer {
     @Override
     public int saveCustomer(Customer customer) {
-        StringBuilder sql = new StringBuilder("INSERT INTO customer (FirstName,LastName,Email,PhoneNumber,UserID)");
-        sql.append(" VALUES(?, ? , ?)");
-        return insert(sql.toString(),customer.getFirstName(),customer.getLastname(),customer.getEmail(),customer.getPhoneNumber(),customer.getIdUser());
+        StringBuilder sql = new StringBuilder("INSERT INTO `customer` (`FirstName`,`LastName`,`Email`,`PhoneNumber`,`UserID`)");
+        sql.append(" VALUES(?, ? , ?,?,?)");
+        return insert(sql.toString(),customer.getFirstName(),customer.getLastname(),customer.getEmail(),customer.getPhoneNumber(),customer.getIdCustomer());
     }
 
     @Override
     public void updateCustomer(Customer customer) {
-        StringBuilder sql = new StringBuilder("UPDATE customer SET `Email` =?,`PhoneNumber`=?,`FirstName`=?,`LastName`=? WHERE `UserID`=?");
+        StringBuilder sql = new StringBuilder("UPDATE `customer` SET `Email` =?,`PhoneNumber`=?,`FirstName`=?,`LastName`=? WHERE `UserID`=?");
         update(sql.toString(),customer.getEmail(),customer.getPhoneNumber(),customer.getFirstName(),customer.getLastname(),customer.getIdCustomer());
     }
 
     @Override
     public void deleteCustomer(int id) {
-        StringBuilder sql = new StringBuilder("DELETE FROM customer WHERE `ID`=?");
+        StringBuilder sql = new StringBuilder("DELETE  FROM `customer` WHERE `UserID`=?");
         update(sql.toString(),id);
     }
 

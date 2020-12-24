@@ -1,11 +1,13 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Role implements Serializable {
     private int idRole;
     private String nameRole;
     private String codeRole;
+    private List<Permission> permissions;
     private String desc;
 
     public Role(int idRole, String nameRole, String codeRole, String desc) {
@@ -16,6 +18,14 @@ public class Role implements Serializable {
     }
 
     public Role() {
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     public int getIdRole() {
