@@ -43,7 +43,7 @@ public class PermissionAPI extends HttpServlet {
         Permission permission = HttpUtil.of(request.getReader()).toModel(Permission.class);
         permissionService.updatePermission(permission);
         mapper.writeValue(response.getOutputStream(),permission);
-
+        System.out.println();
     }
 
     @Override
