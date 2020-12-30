@@ -9,20 +9,20 @@ import java.util.List;
 public class StaffDAOImpl extends BaseDAOImpl<Staff> implements IStaff {
     @Override
     public int saveStaff(Staff staff) {
-       StringBuilder sql = new StringBuilder("INSERT INTO `staff`(`Posittion`,`Task`,`UserID`)");
+       StringBuilder sql = new StringBuilder("INSERT INTO `staff`(`Posittion`,`Task`,`UserID`) ");
        sql.append("VALUES( ?, ?, ?)");
-       return insert(sql.toString(),staff.getPosittion(),staff.getTask(),staff.getIdUser());
+       return insert(sql.toString(),staff.getPosittion(),staff.getTask(),staff.getIdStaff());
     }
 
     @Override
     public void updateStaff(Staff staff) {
         String sql ="UPDATE `staff` SET `Posittion`=?,`Task`=? WHERE `UserID`=?";
-        update(sql,staff.getPosittion(),staff.getTask(),staff.getIdUser());
+        update(sql,staff.getPosittion(),staff.getTask(),staff.getIdStaff());
     }
 
     @Override
     public void deleteStaff(int id) {
-        String sql ="DELETE * from `staff` WHERE `UserID` =?";
+        String sql ="DELETE from `staff` WHERE `UserID` =?";
         update(sql,id);
     }
 
@@ -35,6 +35,10 @@ public class StaffDAOImpl extends BaseDAOImpl<Staff> implements IStaff {
     @Override
     public List<Staff> findStaffByPage(int pagenum, int pagesize) {
         String sql ="SELECT * FROM `staff` LIMIT ?,?";
-        return query(sql,new StaffMapper(),pagenum,pagesize);
+        List<Staff> staff = query(sql,new StaffMapper(),pagenum,pagesize);
+        if (staff.isEmpty()){
+            System.out.println("đây");
+        }
+        return staff;
     }
 }

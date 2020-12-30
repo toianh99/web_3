@@ -6,11 +6,17 @@ public class Sale implements Serializable {
     private int idSale;
     private String nameSale;
     private int percent;
+    private String desc;
 
-    public Sale(int idSale, String nameSale, int percent) {
-        this.idSale = idSale;
-        this.nameSale = nameSale;
-        this.percent = percent;
+    public Sale() {
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public Sale(String nameSale, int percent) {

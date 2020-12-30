@@ -6,15 +6,17 @@ public class Staff  extends User implements Serializable {
     private int idStaff;
     private String task;
     private String posittion;
+    public Staff( String task, String posittion) {
 
-    public Staff(int idStaff, String task, String posittion) {
-        this.idStaff = idStaff;
         this.task = task;
         this.posittion = posittion;
     }
 
     public Staff() {
     }
+
+
+
 
     public int getIdStaff() {
         return idStaff;

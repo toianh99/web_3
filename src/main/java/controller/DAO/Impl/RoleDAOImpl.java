@@ -12,9 +12,9 @@ import java.util.List;
 public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
     @Override
     public int saveRole(Role role) {
-        StringBuilder sql = new StringBuilder("INSERT INTO role(`Name` , `Desc`, `Code`  )");
+        StringBuilder sql = new StringBuilder("INSERT INTO `role` (`Name` , `Desc`, `Code`  )");
         sql.append(" VALUES( ? , ? , ? )");
-        return insert(sql.toString(),role.getNameRole(),role.getCodeRole(),role.getDesc());
+        return insert(sql.toString(),role.getNameRole(),role.getDesc(),role.getCodeRole());
     }
 
     @Override
@@ -25,8 +25,14 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
     }
 
     @Override
+    public int saveRoleUser(int idUser, int idRole) {
+        String sql ="INSERT INTO `user_role`(`UserID`,`RoleID` ) VALUES (?,? )";
+        return insert(sql,idUser,idRole);
+    }
+
+    @Override
     public void updateRole(Role role) {
-        StringBuilder sql = new StringBuilder("UPDATE role SET `Name` = ?, `Code` = ?, `Desc` =? WHERE `ID`` = ?");
+        StringBuilder sql = new StringBuilder("UPDATE role SET `Name` = ?, `Code` = ?, `Desc` =? WHERE `ID` = ?");
         update(sql.toString(), role.getNameRole(),role.getCodeRole(),role.getDesc(),role.getIdRole());
     }
 
@@ -68,5 +74,14 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
         StringBuilder sql = new StringBuilder("INSERT INTO role_permission( RoleID, PermissionID)");
         sql.append("VALUES( ? , ? )");
         return insert(sql.toString(),idRole,idPermission);
+    }
+
+    @Override
+    public List<Role> getRoleByIdUser(int id) {
+        String sql ="SELECT r.* FROM `user` as u " +
+                "INNER JOIN `user_role` as ur ON u.ID= ur.UserID " +
+                "INNER JOIN `role` as r ON r.ID= ur.RoleID " +
+                "WHERE u.ID =?";
+        return query(sql, new RoleMapper(), id);
     }
 }

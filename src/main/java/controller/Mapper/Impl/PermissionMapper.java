@@ -14,7 +14,7 @@ public class PermissionMapper implements RowMapper<Permission> {
             permission.setIdPermission(rs.getInt("ID"));
             permission.setNamePermission(rs.getString("Name"));
             permission.setCodePermisison(rs.getString("Code"));
-//            permission.se(rs.getString("desc"));
+           permission.setDesc(rs.getString("Desc"));
             return permission;
         }catch (Exception e){
             System.out.println("lỗi mapper permission");

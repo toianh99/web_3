@@ -9,20 +9,20 @@ import java.util.List;
 public class ShipmentDAOImpl extends BaseDAOImpl<Shipment> implements IShipment {
     @Override
     public int saveShipment(Shipment shipment) {
-        StringBuilder sql = new StringBuilder("INSERT INTO `shipment` ( `NameShip`,`Type`)");
-        sql.append("VALUES( ?,?)");
-        return insert(sql.toString(),shipment.getNameShipment(),shipment.getTypeShip());
+        StringBuilder sql = new StringBuilder("INSERT INTO `shipment` ( `NameShip`,`Type`,`Desc`)");
+        sql.append("VALUES( ?,?,?)");
+        return insert(sql.toString(),shipment.getNameShipment(),shipment.getTypeShip(),shipment.getDesc());
     }
 
     @Override
     public void updateShipment(Shipment shipment) {
-        String sql = "UPDATE `shipment` SET `NameShip` = ? , `Type` =? WHERE `ID`=?";
-        update(sql,shipment.getNameShipment(),shipment.getTypeShip(),shipment.getIdShipment());
+        String sql = "UPDATE `shipment` SET `NameShip` = ? , `Type`=?,`Desc` =? WHERE `ID`=?";
+        update(sql,shipment.getNameShipment(),shipment.getTypeShip(),shipment.getDesc(),shipment.getIdShipment());
     }
 
     @Override
     public void deleteShipment(int id) {
-        String sql = "DELETE * FROM `shipment` WHERE `ID`=?";
+        String sql = "DELETE FROM `shipment` WHERE `ID`=?";
         update(sql,id);
     }
 

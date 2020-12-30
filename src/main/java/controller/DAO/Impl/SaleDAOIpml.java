@@ -9,15 +9,15 @@ import java.util.List;
 public class SaleDAOIpml extends BaseDAOImpl<Sale> implements ISale {
     @Override
     public int saveSale(Sale sale) {
-        StringBuilder sql = new StringBuilder("INSERT INTO `sale` (`Name`,`Percent` ) ");
-        sql.append("VALUES( ?, ?)");
-        return insert(sql.toString(),sale.getNameSale(),sale.getPercent());
+        StringBuilder sql = new StringBuilder("INSERT INTO `sale` (`Name`,`Percent`,`Desc` ) ");
+        sql.append("VALUES( ?, ? , ? )");
+        return insert(sql.toString(),sale.getNameSale(),sale.getPercent(),sale.getDesc());
     }
 
     @Override
     public void updateSale(Sale sale) {
-        String sql ="UPDATE `sale` SET `Name` = ? ,`Percent` =? WHERE `ID` =?";
-        update(sql,sale.getNameSale(),sale.getPercent(),sale.getIdSale());
+        String sql ="UPDATE `sale` SET `Name` = ? ,`Percent`=?,`Desc` =? WHERE `ID` =?";
+        update(sql,sale.getNameSale(),sale.getPercent(),sale.getDesc(),sale.getIdSale());
     }
 
     @Override

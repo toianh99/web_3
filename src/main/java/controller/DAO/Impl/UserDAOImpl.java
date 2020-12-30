@@ -23,8 +23,8 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
 
     @Override
     public int saveUser(User user) {
-        String sql = "INSERT INTO `user`(`Username` ,`Password`,`Roles`) VALUES(?,?,?)";
-        return insert(sql,user.getUsername(),user.getPassword(),user.getRoles().getIdRole());
+        String sql = "INSERT INTO `user`(`Username` ,`Password`) VALUES(?,?)";
+        return insert(sql,user.getUsername(),user.getPassword());
     }
 
     @Override
@@ -43,6 +43,12 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements IUser {
     public int getCountUser() {
         String sql ="SELECT COUNT(*) FROM `user`";
         return count(sql);
+    }
+
+    @Override
+    public void deleteUSerRole(int id) {
+        String sql = "DELETE FROM `user_role` WHERE `UserID`=?";
+        update(sql,id);
     }
 
 

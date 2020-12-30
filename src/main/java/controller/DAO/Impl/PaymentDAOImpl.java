@@ -10,7 +10,7 @@ import java.util.List;
 public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
     @Override
     public int savePayment(Payment payment) {
-        StringBuilder sql = new StringBuilder("INSERT INTO payment (NamePayment, Type, Desc)");
+        StringBuilder sql = new StringBuilder("INSERT INTO `payment` (`NamePayment`, `Type`, `Desc`)");
         sql.append(" VALUES(?, ? , ?)");
         int a = insert(sql.toString(),payment.getNamePayment(),payment.getType(),payment.getDesc());
         return a;
@@ -24,7 +24,7 @@ public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
 
     @Override
     public void deletePayment(int id) {
-        String sql ="DELETE * FROM payment WHERE `ID` = ?";
+        String sql ="DELETE  FROM `payment` WHERE `ID` = ?";
         update(sql,id);
     }
 
@@ -32,5 +32,11 @@ public class PaymentDAOImpl extends BaseDAOImpl<Payment> implements IPayment {
     public List<Payment> getPayment() {
         String sql ="SELECT * FROM `payment`";
         return query(sql,new PaymentMapper());
+    }
+
+    @Override
+    public Payment finPaymentById(int id) {
+        String sql = "SELECT * FROM `payment` WHERE `ID` =?";
+        return query(sql,new PaymentMapper(),id).get(0);
     }
 }

@@ -10,21 +10,27 @@ public class PaymentService implements IPaymentService {
     private PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
     @Override
     public int savepayment(Payment payment) {
-        return 0;
+       return paymentDAO.savePayment(payment);
+
     }
 
     @Override
     public void updatePayment(Payment payment) {
-
+        paymentDAO.updatePayment(payment);
     }
 
     @Override
     public void deletePayment(int id) {
-
+        paymentDAO.deletePayment(id);
     }
 
     @Override
     public List<Payment> getPayment() {
         return paymentDAO.getPayment();
+    }
+
+    @Override
+    public Payment findPaymentById(int id) {
+        return paymentDAO.finPaymentById(id);
     }
 }

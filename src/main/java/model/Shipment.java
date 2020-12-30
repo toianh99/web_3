@@ -6,6 +6,18 @@ public class Shipment implements Serializable {
     private int idShipment;
     private String nameShipment;
     private String typeShip ;
+    private String desc;
+
+    public Shipment() {
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public Shipment(int idShipment, String nameShipment, String typeShip) {
         this.idShipment = idShipment;

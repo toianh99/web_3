@@ -15,6 +15,7 @@ public class CategoryMapper  implements RowMapper<Category> {
             category.setIdCategory(rs.getInt("ID"));
             category.setNameCategory(rs.getString("Name"));
             category.setCodeCategory(rs.getString("Code"));
+            category.setDesc(rs.getString("Desc"));
             return category;
         }catch (Exception ce){
             System.out.println("lỗi mapper category");

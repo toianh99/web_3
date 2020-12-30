@@ -13,13 +13,13 @@ public class BrandDAOImpl extends BaseDAOImpl<Brand> implements IBrand {
     public int saveBrand(Brand brand) {
         StringBuilder sql = new StringBuilder("INSERT INTO brand (Name, `Desc`,Code)");
         sql.append(" VALUES(?, ? , ?)");
-        return insert(sql.toString(),brand.getNameBrand(),brand.getCodeBrand(),brand.getCodeBrand());
+        return insert(sql.toString(),brand.getNameBrand(),brand.getDesc(),brand.getCodeBrand());
     }
 
     @Override
     public void updateBrand(Brand brand) {
-        StringBuilder sql = new StringBuilder("UPDATE brand SET Name = ?,Code = ?, Desc = ? WHERE ID = ?");
-        update(sql.toString(), brand.getNameBrand(),brand.getCodeBrand(),brand.getCodeBrand(),brand.getIdBrand());
+        StringBuilder sql = new StringBuilder("UPDATE `brand` SET `Name` = ?,`Code` = ?, `Desc` = ? WHERE `ID` = ?");
+        update(sql.toString(), brand.getNameBrand(),brand.getCodeBrand(),brand.getDesc(),brand.getIdBrand());
     }
 
     @Override

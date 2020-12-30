@@ -2,19 +2,20 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
     private int idUser;
     private String username;
     private String password;
-    private Role roles;
+    private List<Role> roles;
 
-    public void setRoles(Role roles) {
-        this.roles = roles;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public Role getRoles() {
-        return roles;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public User() {

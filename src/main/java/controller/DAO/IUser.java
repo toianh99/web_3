@@ -9,5 +9,6 @@ public interface IUser extends  IBaseDAO<User> {
     void updateUser(User user);
     void deleteUser(int id);
     int getCountUser();
+    void deleteUSerRole(int id);
 
 }

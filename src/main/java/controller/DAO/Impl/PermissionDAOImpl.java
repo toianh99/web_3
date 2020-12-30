@@ -11,9 +11,9 @@ import java.util.List;
 public class PermissionDAOImpl extends BaseDAOImpl<Permission> implements IPermission {
     @Override
     public int savePermission(Permission permission) {
-        StringBuilder sql = new StringBuilder("INSERT INTO `permission` ( `Name`,`Code`,) ");
-        sql.append(" VALUES ( ? , ?  ");
-        return insert(sql.toString(),permission.getNamePermission(),permission.getCodePermisison());
+        StringBuilder sql = new StringBuilder("INSERT INTO `permission` ( `Name`,`Code`,`Desc`) ");
+        sql.append(" VALUES ( ? , ? ,? )");
+        return insert(sql.toString(),permission.getNamePermission(),permission.getCodePermisison(),permission.getDesc());
     }
 
     @Override
@@ -32,7 +32,11 @@ public class PermissionDAOImpl extends BaseDAOImpl<Permission> implements IPermi
 
     @Override
     public List<Permission> findByIdRole(int idRole) {
-        return null;
+        String sql = "SELECT p.* FROM `role` as r " +
+                "INNER JOIN `role_permission` as rp ON rp.ROleID= r.ID " +
+                "INNER JOIN `permission` as p ON p.ID = rp.PermissionID " +
+                "WHERE r.ID = ?";
+        return query(sql, new PermissionMapper(),idRole);
     }
 
     @Override

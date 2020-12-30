@@ -13,8 +13,9 @@ public class RoleMapper implements RowMapper<Role> {
         try {
             Role role = new Role();
             role.setIdRole(rs.getInt("ID"));
-            role.setNameRole(rs.getString("nameRole"));
-            role.setDesc(rs.getString("desc"));
+            role.setNameRole(rs.getString("Name"));
+            role.setDesc(rs.getString("Desc"));
+            role.setCodeRole(rs.getString("Code"));
             return role;
         }catch (Exception e){
             System.out.println("lỗi map roles");

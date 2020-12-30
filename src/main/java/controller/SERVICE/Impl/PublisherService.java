@@ -4,6 +4,8 @@ import controller.DAO.Impl.PublisherDAOImpl;
 import controller.SERVICE.IPublisherService;
 import model.Publisher;
 
+import java.util.List;
+
 public class PublisherService implements IPublisherService {
     private PublisherDAOImpl publisherDAO= new PublisherDAOImpl();
     @Override
@@ -24,5 +26,10 @@ public class PublisherService implements IPublisherService {
     @Override
     public Publisher getPublisherById(int id) {
         return publisherDAO.getPublisherById(id);
+    }
+
+    @Override
+    public List<Publisher> getPublisher(int pagenum, int pagesize) {
+        return publisherDAO.getPublisher(pagenum,pagesize);
     }
 }

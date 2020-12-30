@@ -9,4 +9,5 @@ public interface IPaymentService {
     void updatePayment(Payment payment);
     void deletePayment(int id);
     List<Payment> getPayment();
+    Payment findPaymentById(int id);
 }

@@ -9,6 +9,8 @@ public class Customer extends User implements Serializable {
     private String lastname;
     private String phoneNumber;
 
+    public Customer() {
+    }
     public Customer(int idCustomer, String email, String firstName, String lastname, String phoneNumber) {
         this.idCustomer = idCustomer;
         this.email = email;
@@ -17,8 +19,7 @@ public class Customer extends User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Customer() {
-    }
+
 
     public int getIdCustomer() {
         return idCustomer;

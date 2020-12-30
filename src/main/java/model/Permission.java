@@ -6,14 +6,23 @@ public class Permission implements Serializable {
     private int idPermission;
     private String namePermission;
     private String codePermisison;
+    private String desc;
 
-    public Permission(int idPermission, String namePermission, String codePermisison) {
-        this.idPermission = idPermission;
-        this.namePermission = namePermission;
-        this.codePermisison = codePermisison;
-    }
+//    public Permission(int idPermission, String namePermission, String codePermisison) {
+//        this.idPermission = idPermission;
+//        this.namePermission = namePermission;
+//        this.codePermisison = codePermisison;
+//    }
 
     public Permission() {
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getIdPermission() {

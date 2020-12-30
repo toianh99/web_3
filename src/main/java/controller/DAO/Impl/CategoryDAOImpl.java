@@ -31,9 +31,9 @@ public class CategoryDAOImpl extends BaseDAOImpl<Category> implements ICategory 
 
     @Override
     public int saveCategory(Category category) {
-        StringBuilder sql = new StringBuilder("INSERT INTO category (Name, Code)");
-        sql.append(" VALUES(?, ?)");
-        return insert(sql.toString(),category.getNameCategory(),category.getCodeCategory());
+        StringBuilder sql = new StringBuilder("INSERT INTO `category` (`Name`, `Code`,`Desc`)");
+        sql.append(" VALUES(?, ?,?)");
+        return insert(sql.toString(),category.getNameCategory(),category.getCodeCategory(),category.getDesc());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CategoryDAOImpl extends BaseDAOImpl<Category> implements ICategory 
 
     @Override
     public void updateCategory(Category category) {
-        StringBuilder sql = new StringBuilder("UPDATE category SET Name = ?, Code = ? WHERE ID = ?");
-        update(sql.toString(), category.getNameCategory(),category.getCodeCategory(),category.getIdCategory());
+        StringBuilder sql = new StringBuilder("UPDATE `category` SET `Name` = ?, `Code` = ? ,`Desc` =? WHERE `ID` = ?");
+        update(sql.toString(), category.getNameCategory(),category.getCodeCategory(),category.getDesc(),category.getIdCategory());
     }
 }

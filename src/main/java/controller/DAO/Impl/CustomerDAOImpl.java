@@ -29,7 +29,7 @@ public class CustomerDAOImpl extends BaseDAOImpl<Customer> implements ICustomer 
 
     @Override
     public Customer findById(int id) {
-        StringBuilder sql = new StringBuilder("SELECT * FROM customer WHERE `ID`=?");
+        StringBuilder sql = new StringBuilder("SELECT * FROM `customer` WHERE `UserID`=?");
         Customer customer = query(sql.toString(),new CustomerMapper(),id).get(0);
         return  customer;
     }

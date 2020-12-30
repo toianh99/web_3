@@ -11,7 +11,8 @@ public class PaymentMapper implements RowMapper<Payment> {
     @Override
     public Payment mapRow(ResultSet rs) throws SQLException {
         try{
-            Payment payment = new Payment(rs.getInt("ID"), rs.getString("NamePayment"),rs.getString("Type"));
+            Payment payment = new Payment( rs.getString("NamePayment"),rs.getString("Type"),rs.getString("Desc"));
+            payment.setIdPayment(rs.getInt("ID"));
             return payment;
         }catch (Exception ex){
             System.out.println("lỗi mapper payment");

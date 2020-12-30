@@ -10,4 +10,5 @@ public interface IPayment {
     void updatePayment(Payment payment);
     void deletePayment(int id);
     List<Payment> getPayment();
+    Payment finPaymentById(int id);
 }

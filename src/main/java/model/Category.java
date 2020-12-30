@@ -6,6 +6,15 @@ public class Category implements Serializable {
     private int idCategory;
     private String nameCategory;
     private String codeCategory;
+    private String desc;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public int getIdCategory() {
         return idCategory;

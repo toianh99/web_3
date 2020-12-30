@@ -5,6 +5,8 @@ import controller.DAO.Impl.BrandDAOImpl;
 import controller.SERVICE.IBrandService;
 import model.Brand;
 
+import java.util.List;
+
 public class BrandService implements IBrandService {
     private BrandDAOImpl brandDAO = new BrandDAOImpl();
     @Override
@@ -26,5 +28,10 @@ public class BrandService implements IBrandService {
     @Override
     public Brand findBrandById(int id) {
         return brandDAO.findById(id);
+    }
+
+    @Override
+    public List<Brand> getBrandByPage(int pagenum, int pagesize) {
+        return brandDAO.findBrand(pagenum,pagesize);
     }
 }

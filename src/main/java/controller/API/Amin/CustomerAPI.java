@@ -5,6 +5,7 @@ import controller.SERVICE.Impl.CustomerService;
 import controller.SERVICE.Impl.UserService;
 import controller.SHARE.HttpUtil;
 import model.Customer;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,14 +24,22 @@ public class CustomerAPI extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        List<Customer> customers = customerService.getCustomer(0,100);
-        mapper.writeValue(resp.getOutputStream(),customers);
+        String id = req.getParameter("id");
+        if(id!=null){
+            Customer customer = customerService.findById(Integer.parseInt(id));
+            User user= userService.findById(Integer.parseInt(id));
+            customer.setUsername(user.getUsername());
+            customer.setPassword(user.getPassword());
+            customer.setRoles(user.getRoles());
+            mapper.writeValue(resp.getOutputStream(),customer);
+        }
+        else{
+            List<Customer> customers = customerService.getCustomer(0,100000);
+            mapper.writeValue(resp.getOutputStream(),customers);
+        }
+
     }
 
-    @Override
-    protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doHead(req, resp);
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +47,6 @@ public class CustomerAPI extends HttpServlet {
         resp.setContentType("application/json");
         Customer customer = HttpUtil.of(req.getReader()).toModel(Customer.class);
         customerService.saveCustomer(customer);
-
         mapper.writeValue(resp.getOutputStream(),customer);
     }
 
@@ -56,7 +64,6 @@ public class CustomerAPI extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
         Customer customer = HttpUtil.of(req.getReader()).toModel(Customer.class);
-        System.out.println(customer.getIdCustomer());
         customerService.deleteCustomer(customer.getIdCustomer());
         userService.deleteUser(customer.getIdCustomer());
         mapper.writeValue(resp.getOutputStream(),"{Xoa thanh cong}");

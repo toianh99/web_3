@@ -1,30 +1,37 @@
 package controller.SERVICE.Impl;
 
 import controller.DAO.Impl.CustomerDAOImpl;
+import controller.DAO.Impl.RoleDAOImpl;
 import controller.DAO.Impl.UserDAOImpl;
 import controller.SERVICE.ICustomerService;
 import model.Customer;
 import model.Role;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService implements ICustomerService {
     private CustomerDAOImpl customerDAO = new CustomerDAOImpl();
     private UserDAOImpl userDAO = new UserDAOImpl();
     private User user = new User();
+    private RoleDAOImpl roleDAO = new RoleDAOImpl();
     @Override
     public int saveCustomer(Customer customer) {
         user.setPassword(customer.getPassword());
         user.setUsername(customer.getUsername());
         Role roleCus = new Role();
         roleCus.setIdRole(2);
-        user.setRoles(roleCus);
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleCus);
+        user.setRoles(roles);
+
         int idUser = userDAO.saveUser(user);
+        System.out.println(idUser);
+        roleDAO.saveRoleUser(idUser,3);
         customer.setIdCustomer(idUser);
         int a = customerDAO.saveCustomer(customer);
         return a;
-
     }
 
     @Override
@@ -44,7 +51,13 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<Customer> getCustomer(int pagenum, int pagesize) {
-       return customerDAO.getCustomer(pagenum,pagesize);
+        List<Customer> customers = customerDAO.getCustomer(pagenum,pagesize);
+        for (int i=0;i<customers.size();i++){
+            User u= userDAO.findOne(customers.get(i).getIdCustomer());
+            customers.get(i).setUsername(u.getUsername());
+            customers.get(i).setPassword(u.getPassword());
+        }
+       return customers;
     }
 
     @Override
