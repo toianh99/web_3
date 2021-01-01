@@ -58,7 +58,7 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
 
     @Override
     public Role findById(int idRole) {
-        String sql = "SELECT * FROM role WHERE `ID`` = ?";
+        String sql = "SELECT * FROM `role` WHERE `ID` = ?";
         List<Role> roles = query(sql, new RoleMapper(), idRole);
         return roles.isEmpty() ? null : roles.get(0);
     }
@@ -83,5 +83,11 @@ public class RoleDAOImpl extends BaseDAOImpl<Role> implements IRole {
                 "INNER JOIN `role` as r ON r.ID= ur.RoleID " +
                 "WHERE u.ID =?";
         return query(sql, new RoleMapper(), id);
+    }
+
+    @Override
+    public void deleteUserRole(int idUser, int idRole) {
+        String sql = "DELETE FROM `user_role` WHERE `UserID`=? AND `RoleID`=?";
+        update(sql,idUser,idRole);
     }
 }

@@ -23,8 +23,17 @@ public class RoleAPI  extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        List<Role> roles= roleService.getAll(0,100);
-        mapper.writeValue(resp.getOutputStream(),roles);
+        String id = req.getParameter("id");
+
+        if(id!=null){
+            Role role = roleService.findById(Integer.parseInt(id));
+            mapper.writeValue(resp.getOutputStream(),role);
+        }else {
+            List<Role> roles= roleService.getAll(0,100);
+            mapper.writeValue(resp.getOutputStream(),roles);
+        }
+
+
     }
 
     @Override

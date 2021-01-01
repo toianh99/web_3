@@ -23,8 +23,16 @@ public class StaffAPI extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        List<Staff> staffs = staffService.findStaffByPage(0,100);
-        mapper.writeValue(resp.getOutputStream(),staffs);
+        String id = req.getParameter("id");
+        if(id!=null){
+           Staff staff= staffService.findStaffById(Integer.parseInt(id));
+            mapper.writeValue(resp.getOutputStream(),staff);
+        }
+        else{
+            List<Staff> staffs = staffService.findStaffByPage(0,100);
+            mapper.writeValue(resp.getOutputStream(),staffs);
+        }
+
     }
 
     @Override

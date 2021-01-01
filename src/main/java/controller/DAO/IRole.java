@@ -15,4 +15,5 @@ public interface IRole {
     List<Role> getAll(int pagenum, int pagesize);
     int saveRolePermission(int idRole, int idPermission);
     List<Role> getRoleByIdUser(int id);
+    void deleteUserRole(int idUser,int idRole);
 }
